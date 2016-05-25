@@ -1,0 +1,53 @@
+*~
+*.o
+*.lo
+*.a
+*.la
+/build*/
+
+# autotools stuff
+/m4/lt*.m4
+/m4/libtool.m4
+/aclocal.m4
+/ltmain.sh
+/install-sh
+/config.guess
+/config.h.in
+/config.sub
+/autom4te.cache/
+/compile
+/configure
+/depcomp
+/missing
+/test-driver
+
+# automake
+/ar-lib
+Makefile.in
+
+# cscope and other tags
+/cscope.*
+/GPATH
+/GRTAGS
+/GSYMS
+/GTAGS
+*/Makefile
+config.h
+config.log
+config.status
+libtool
+stamp-h1
+src/.deps
+tests/.deps
+Makefile
+
+# RPM crap
+*.spec
+*.tar.gz
+*/.libs
+*.log
+*.trs
+python/build
+ChangeLog
+tests/check_bitvector
+tests/check_bloom
