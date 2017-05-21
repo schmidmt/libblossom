@@ -1,0 +1,14 @@
+language: c
+compiler:
+    - gcc-4.9
+
+addons:
+    apt:
+        sources:
+            - ubuntu-toolchain-r-test
+
+        packages:
+            - gcc-4.9
+            - check
+
+script:  ./autogen.sh && ./configure --enable-tests && make check

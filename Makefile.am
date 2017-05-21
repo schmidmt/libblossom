@@ -1,5 +1,7 @@
 ACLOCAL_AMFLAGS = -I m4
 
+@CODE_COVERAGE_RULES@
+
 SUBDIRS        = src tests
 EXTRA_DIST     = get-version autogen.sh
 DISTCLEANFILES = ChangeLog

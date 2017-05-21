@@ -14,6 +14,9 @@ m4_ifdef([AM_SILENT_RULES], [AM_SILENT_RULES(yes)])
 m4_pattern_allow([AM_PROG_AR])
 AM_PROG_AR
 
+
+m4_include([m4/ax_code_coverage.m4])
+
 # Configure libtool
 LT_INIT
 AC_ENABLE_SHARED
@@ -53,6 +56,9 @@ AX_CFLAGS_GCC_OPTION([-D_FORTIFY_SOURCE=2],[MORE_CPPFLAGS])
 AX_CFLAGS_GCC_OPTION([-Wno-unused-parameter],[MORE_CFLAGS])
 AX_CFLAGS_GCC_OPTION([-Wno-missing-field-initializers],[MORE_CFLAGS])
 
+# Check Headers
+AC_CHECK_HEADERS([stdatomic.h], [], [AC_MSG_ERROR([No stdatomic.h, must use GCC >= 4.9])])
+
 # Check libraries
 dnl AC_CHECK_LIB(rt, sched_get_priority_min)
 
@@ -72,8 +78,12 @@ esac
 AC_CACHE_SAVE
 
 AS_IF([test "x$enable_tests" == "xyes"], [
-    PKG_CHECK_MODULES([CHECK], [check >= 0.9.10])
+    PKG_CHECK_MODULES([CHECK], [check >= 0.9.8])
 ])
+
+# Enable coverage checks
+AX_CODE_COVERAGE
+AC_SUBST(CODE_COVERAGE_IGNORE_PATTERN, 'reqs/\*')
 
 AC_CACHE_SAVE
 

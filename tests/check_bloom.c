@@ -8,8 +8,9 @@ START_TEST(test_add)
     char * test_key = "test";
     size_t test_key_len = strlen(test_key);
     bloom_t * bloom = bloom_create(10, 0.01);
-    ck_assert_ptr_ne(bloom, NULL);
-    ck_assert_int_eq(bloom_add(bloom, test_key, test_key_len), 0);
+    ck_assert_msg(bloom != NULL, "Initial Bloom ptr should not be null");
+    int check_bloom_add = bloom_add(bloom, test_key, test_key_len);
+    ck_assert_int_eq(check_bloom_add, 0);
     ck_assert_int_eq(bloom_get(bloom, test_key, test_key_len), 1);
     bloom_destroy(bloom);
 }
@@ -20,7 +21,7 @@ START_TEST(test_get_not_added)
     char * test_key = "test";
     size_t test_key_len = strlen(test_key);
     bloom_t * bloom = bloom_create(10, 0.01);
-    ck_assert_ptr_ne(bloom, NULL);
+    ck_assert_msg(bloom != NULL, "Initial Bloom ptr should not be null");
     ck_assert_int_eq(bloom_get(bloom, test_key, test_key_len), 0);
     bloom_destroy(bloom);
 }

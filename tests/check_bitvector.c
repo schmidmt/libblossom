@@ -6,7 +6,7 @@ START_TEST(test_init)
 {
     
     bitvector_t * vector = bv_create(sizeof(int) * CHAR_BIT);
-    ck_assert_ptr_ne(vector, 0);
+    ck_assert_msg(vector != 0, "Initial vector should not be NULL");
     for(size_t i = 0; i < sizeof(int) * CHAR_BIT; ++i)
     {
         ck_assert_int_eq(bv_get(vector, i), 0);
@@ -19,7 +19,7 @@ END_TEST
 START_TEST(test_set)
 {
     bitvector_t * vector = bv_create(sizeof(int) * CHAR_BIT);
-    ck_assert_ptr_ne(vector, 0);
+    ck_assert_msg(vector != 0, "Initial vector should not be NULL");
     bv_set(vector, 0);
     ck_assert_int_eq(bv_get(vector, 0), 1);
     bv_destroy(vector);
@@ -30,7 +30,7 @@ START_TEST(test_unset)
 {
 
     bitvector_t * vector = bv_create(sizeof(int) * CHAR_BIT);
-    ck_assert_ptr_ne(vector, 0);
+    ck_assert_msg(vector != 0, "Initial vector should not be NULL");
     bv_set(vector, 0);
     bv_unset(vector, 0);
     ck_assert_int_eq(bv_get(vector, 0), 0);

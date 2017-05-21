@@ -51,3 +51,9 @@ python/build
 ChangeLog
 tests/check_bitvector
 tests/check_bloom
+*.gcno
+*.info
+*.deps
+*.libs
+*.dirstamp
+*-coverage
