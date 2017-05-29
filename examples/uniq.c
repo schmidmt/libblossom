@@ -1,18 +1,8 @@
-# LibBlossom
-Atomic Bloom Filters
-
-[![Build Status](https://travis-ci.org/schmidmt/libblossom.svg?branch=master)](https://travis-ci.org/schmidmt/libblossom)
-
-
-## Example
-The following is a Bloom filter version of the unique program. Note, it does not required the input to be sorted
-
-```c
 #include <stdio.h>
 #include <inttypes.h>
 #include <errno.h>
 #include <string.h>
-#include <stdlib.h>
+#include <stdlib.h> 
 #include "../src/blossom.h"
 
 #define MAX_LINE_LENGTH 128
@@ -37,18 +27,10 @@ int main(int argc, char **argv)
     }
 
     bloom_t * bloom = bloom_create((size_t) size, error_rate);
-        char buffer[MAX_LINE_LENGTH];
-        while (fgets(buffer, MAX_LINE_LENGTH, stdin) != NULL) {
+	char buffer[MAX_LINE_LENGTH];
+	while (fgets(buffer, MAX_LINE_LENGTH, stdin) != NULL) {
         if (bloom_add(bloom, buffer, strlen(buffer) - 1) == 0) {
             printf("%s", buffer);
         }
-        }
+	}
 }
-```
-
-To build, run `gcc -o uniq uniq.c -lblossom`.
-An example of running this could be:
-
-```bash
-# echo -e 'a\nb\nc\na\nc\n' | ./uniq 500 0.001
-```
