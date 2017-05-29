@@ -2,6 +2,7 @@
 #include <stdlib.h>
 #include <math.h>
 #include <stdint.h>
+#include <stdatomic.h>
 #include "blossom.h"
 #include "../reqs/murmur3/murmur3.h"
 
@@ -130,7 +131,7 @@ int bloom_add(bloom_t * bloom, const char *key, size_t key_len)
 	}
 	free(hashes);
 	if (!seen)
-		bloom->nitems++;
+	    atomic_fetch_add_explicit(&(bloom->nitems), 1, memory_order_relaxed);
 	return seen;
 }
 

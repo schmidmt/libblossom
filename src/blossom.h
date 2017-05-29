@@ -11,7 +11,7 @@ typedef struct {
     size_t capacity; /** Capacity of the bloom filter */
     size_t nhashes; /** Number of hashses required for this filter */
     double error_rate; /** Maximum acceptable error-rate */
-    size_t nitems; /** Number of items inserted into filter. */
+    _Atomic size_t nitems; /** Number of items inserted into filter. */
     size_t size; /** Maximum size of bloom filter. */
     bitvector_t * bitvector; /** Pointer to bitvector for bloom filter */
 } bloom_t;
